@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Barbero Vazquez — Mobile Demo</title>
+<style>
+  :root{
+    --bg:#0f0f10;
+    --card:#171719;
+    --soft:#232326;
+    --text:#f4f1ea;
+    --muted:#b8b2a8;
+    --accent:#c6a15b;
+    --accent2:#e2c98e;
+    --line:#2c2c30;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  a{text-decoration:none;color:inherit}
+  .app{
+    width:min(100%, 480px);
+    margin:0 auto;
+    min-height:100vh;
+    background:var(--bg);
+    padding-bottom:88px;
+  }
+  .hero{
+    min-height:58vh;
+    padding:26px 22px 30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 70% 20%, rgba(198,161,91,.18), transparent 35%),
+      linear-gradient(180deg, #1b1b1e 0%, #101011 72%);
+    border-bottom:1px solid var(--line);
+  }
+  .demo-badge{
+    position:absolute;
+    top:18px; right:18px;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent2);
+    border:1px solid rgba(198,161,91,.45);
+    background:rgba(0,0,0,.25);
+    padding:7px 10px;
+    border-radius:999px;
+  }
+  .mark{
+    width:72px;height:72px;
+    border:1px solid rgba(198,161,91,.65);
+    border-radius:50%;
+    display:grid;place-items:center;
+    color:var(--accent2);
+    font-size:28px;
+    margin-bottom:22px;
+  }
+  .eyebrow{
+    color:var(--accent2);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:500;
+    font-size:44px;
+    line-height:.98;
+    margin:0 0 14px;
+  }
+  .sub{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.55;
+    max-width:360px;
+    margin-bottom:22px;
+  }
+  .primary{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    padding:16px 18px;
+    border-radius:14px;
+    background:var(--accent);
+    color:#111;
+    font-weight:800;
+    border:none;
+    font-size:15px;
+    cursor:pointer;
+  }
+  .section{
+    padding:30px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .section h2{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-size:30px;
+    font-weight:500;
+    margin:0 0 8px;
+  }
+  .section p.lead{
+    color:var(--muted);
+    margin:0 0 20px;
+    line-height:1.5;
+    font-size:14px;
+  }
+  .quick-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .quick{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px 16px;
+    min-height:118px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .quick .icon{font-size:24px}
+  .quick strong{font-size:15px}
+  .quick span{font-size:12px;color:var(--muted)}
+  .gallery{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+  .photo{
+    aspect-ratio:4/5;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:
+      linear-gradient(145deg, rgba(198,161,91,.18), rgba(255,255,255,.03)),
+      #1b1b1d;
+    display:flex;
+    align-items:flex-end;
+    padding:12px;
+    color:#ddd6c9;
+    font-size:12px;
+  }
+  .services{
+    display:grid;
+    gap:12px;
+  }
+  .service{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:16px;
+  }
+  .service-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .service h3{margin:0 0 6px;font-size:16px}
+  .service p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+  .price{
+    color:var(--accent2);
+    font-weight:700;
+    white-space:nowrap;
+    font-size:13px;
+  }
+  .service button{
+    margin-top:14px;
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid rgba(198,161,91,.55);
+    background:transparent;
+    color:var(--accent2);
+    font-weight:700;
+    cursor:pointer;
+  }
+  .vip{
+    background:
+      radial-gradient(circle at 100% 0%, rgba(198,161,91,.16), transparent 40%),
+      var(--card);
+    border:1px solid rgba(198,161,91,.35);
+    border-radius:18px;
+    padding:20px;
+  }
+  .vip label{
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:8px;
+  }
+  .vip-row{
+    display:flex;
+    gap:8px;
+  }
+  .vip input{
+    flex:1;
+    min-width:0;
+    border-radius:12px;
+    border:1px solid var(--line);
+    background:#111113;
+    color:white;
+    padding:13px 14px;
+    outline:none;
+  }
+  .vip button{
+    border:0;
+    border-radius:12px;
+    padding:0 16px;
+    background:var(--accent);
+    color:#111;
+    font-weight:800;
+    cursor:pointer;
+  }
+  .vip-note{
+    margin-top:10px;
+    color:#8f897f;
+    font-size:11px;
+  }
+  .vip-result{
+    display:none;
+    margin-top:16px;
+    padding:14px;
+    background:#111113;
+    border:1px solid var(--line);
+    border-radius:12px;
+    font-size:13px;
+    line-height:1.5;
+  }
+  footer{
+    padding:26px 20px 32px;
+    color:#7f7a72;
+    font-size:12px;
+    text-align:center;
+  }
+  .nav{
+    position:fixed;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    width:min(100%, 480px);
+    height:72px;
+    background:rgba(15,15,16,.96);
+    backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    z-index:10;
+  }
+  .nav a{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:4px;
+    font-size:11px;
+    color:var(--muted);
+  }
+  .nav a b{font-size:18px;color:var(--text)}
+  @media (min-width:700px){
+    body{padding:28px 0}
+    .app{
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 28px 80px rgba(0,0,0,.45);
+    }
+    .nav{
+      bottom:24px;
+      width:440px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="hero" id="home">
+    <div class="demo-badge">Mobile Demo</div>
+    <div class="mark">BV</div>
+    <div class="eyebrow">Precision • Style • Confidence</div>
+    <h1>Barbero<br>Vazquez</h1>
+    <div class="sub">
+      A clean mobile-first home for booking, services, haircut work, and private VIP access.
+    </div>
+    <a class="primary" href="https://barbero-vazquez.square.site/" target="_blank" rel="noopener">
+      Book Appointment ↗
+    </a>
+  </section>
+
+  <section class="section">
+    <h2>Everything in one place</h2>
+    <p class="lead">This is the simple four-section flow your clients would see from Instagram.</p>
+    <div class="quick-grid">
+      <a class="quick" href="https://barbero-vazquez.square.site/" target="_blank" rel="noopener">
+        <div class="icon">◷</div>
+        <div><strong>Book</strong><br><span>Current Square booking</span></div>
+      </a>
+      <a class="quick" href="#gallery">
+        <div class="icon">▦</div>
+        <div><strong>Gallery</strong><br><span>Best haircut work</span></div>
+      </a>
+      <a class="quick" href="#services">
+        <div class="icon">✂</div>
+        <div><strong>Services</strong><br><span>What you offer</span></div>
+      </a>
+      <a class="quick" href="#vip">
+        <div class="icon">◆</div>
+        <div><strong>VIP</strong><br><span>Private client access</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2>Gallery</h2>
+    <p class="lead">Temporary placeholders. We’ll replace these with his real haircut photos.</p>
+    <div class="gallery">
+      <div class="photo">Haircut Photo 01</div>
+      <div class="photo">Haircut Photo 02</div>
+      <div class="photo">Haircut Photo 03</div>
+      <div class="photo">Haircut Photo 04</div>
+      <div class="photo">Haircut Photo 05</div>
+      <div class="photo">Haircut Photo 06</div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <h2>Services</h2>
+    <p class="lead">Sample layout only. Replace the names, descriptions, time and pricing when he sends them.</p>
+    <div class="services">
+      <div class="service">
+        <div class="service-top">
+          <div>
+            <h3>Service 01</h3>
+            <p>Short description of the service goes here.</p>
+          </div>
+          <div class="price">Price TBD</div>
+        </div>
+        <button onclick="bookNow()">Book This Service</button>
+      </div>
+
+      <div class="service">
+        <div class="service-top">
+          <div>
+            <h3>Service 02</h3>
+            <p>Short description of the service goes here.</p>
+          </div>
+          <div class="price">Price TBD</div>
+        </div>
+        <button onclick="bookNow()">Book This Service</button>
+      </div>
+
+      <div class="service">
+        <div class="service-top">
+          <div>
+            <h3>Service 03</h3>
+            <p>Short description of the service goes here.</p>
+          </div>
+          <div class="price">Price TBD</div>
+        </div>
+        <button onclick="bookNow()">Book This Service</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="vip">
+    <h2>VIP Access</h2>
+    <p class="lead">A private area for special clients, after-hours options, priority booking, or any exclusive service he decides to offer.</p>
+    <div class="vip">
+      <label for="vipcode">ENTER ACCESS CODE</label>
+      <div class="vip-row">
+        <input id="vipcode" inputmode="numeric" placeholder="••••" maxlength="8" />
+        <button onclick="unlockVip()">Unlock</button>
+      </div>
+      <div class="vip-note">Demo code: 1234</div>
+      <div class="vip-result" id="vipresult">
+        <strong style="color:var(--accent2)">VIP ACCESS UNLOCKED</strong><br><br>
+        This is where private services, priority appointment options, or special booking instructions would appear.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Demo concept for Barbero Vazquez • Mobile-first prototype
+  </footer>
+</div>
+
+<nav class="nav">
+  <a href="#home"><b>⌂</b>Home</a>
+  <a href="https://barbero-vazquez.square.site/" target="_blank" rel="noopener"><b>◷</b>Book</a>
+  <a href="#gallery"><b>▦</b>Gallery</a>
+  <a href="#vip"><b>◆</b>VIP</a>
+</nav>
+
+<script>
+function bookNow(){
+  window.open('https://barbero-vazquez.square.site/', '_blank', 'noopener');
+}
+function unlockVip(){
+  const code = document.getElementById('vipcode').value.trim();
+  const result = document.getElementById('vipresult');
+  if(code === '1234'){
+    result.style.display = 'block';
+  } else {
+    result.style.display = 'block';
+    result.innerHTML = '<strong style="color:#e0a2a2">Invalid demo code.</strong><br><br>For the real version, we’ll replace this with the access method your barber chooses.';
+  }
+}
+</script>
+</body>
+</html>
